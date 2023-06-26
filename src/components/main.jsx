@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./header";
+// import Header from "./header";
 import walletCard from "../assets/walletCard.png";
 import DataTable from "react-data-table-component";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -144,7 +144,6 @@ const Main = () => {
 
   return (
     <div>
-      <Header />
       <div className=" px-[2rem]">
         <div className="flex justify-between gap-5">
           <div className="w-[50%] my-[2rem] shadow-xl">

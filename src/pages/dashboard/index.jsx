@@ -1,20 +1,16 @@
 import React from "react";
-import SideNav from "../../components/sideNav";
 import Main from "../../components/main";
+import Container from "../../components/sharedComponent/container";
 
 
 const Dashboard = () => {
   
   return (
-    <div className="flex">
-      <div className="w-[20%]">
-        <SideNav />
-      </div>
+    <Container>
 
-      <div className="bg-mainBG w-[80%]">
-        <Main />
-      </div>
-    </div>
+        <Main/>
+    </Container>
+   
   );
 };
 

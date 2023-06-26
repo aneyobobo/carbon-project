@@ -10,8 +10,8 @@ import { RxExit } from "react-icons/rx";
 
 const SideNav = () => {
   return (
-    <div>
-      <div className="bg-frame bg-cover bg-no-repeat h-screen">
+    
+      <div className="bg-frame bg-cover bg-no-repeat h-[100%]">
         <div className="flex flex-col items-center ">
           <img src={Logo} alt="" className="" />
 
@@ -61,7 +61,6 @@ const SideNav = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
