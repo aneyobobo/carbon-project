@@ -146,12 +146,12 @@ const Main = () => {
 
   return (
     <div>
-      <div className=" px-[2rem]">
-        <div className="flex justify-between gap-5">
-          <div className="w-[50%] my-[2rem] shadow-xl">
+      <div className=" px-[2rem] ">
+        <div className="flex sm:flex-col justify-between gap-5">
+          <div className="w-[50%] sm:w-full my-[2rem] shadow-xl">
             <img src={walletCard} alt="walletCard" />
           </div>
-          <div className="w-[50%] pb-[3rem] p-[1rem] my-[2rem] h-[20rem] rounded-lg bg-white shadow-xl">
+          <div className="w-[50%] sm:w-full pb-[3rem] p-[1rem] sm:my-0 my-[2rem] h-[20rem] rounded-lg bg-white shadow-xl">
             <p className="text-lg font-bold">Carbon Stats</p>
             <Doughnut
               data={dataChart}
