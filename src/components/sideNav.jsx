@@ -20,43 +20,43 @@ const SideNav = () => {
               <span>
                 <LiaHomeSolid />
               </span>
-              <p className="sm:hideen">Home</p>
+              <p className="sm:hidden">Home</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <ImStatsBars />
               </span>
-              <p className="sm:hideen">Activity</p>
+              <p className="sm:hidden">Activity</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <LiaCreditCardSolid />
               </span>
-              Bills
+              <p className="sm:hidden">Bills</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <BsArrowLeftRight />
               </span>
-              <p className="sm:hideen">Transactions</p>
+              <p className="sm:hidden">Transactions</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <FiMail />
               </span>
-              <p className="sm:hideen">Compliants</p>
+              <p className="sm:hidden">Compliants</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <BsGear />
               </span>
-              <p className="sm:hideen">Settings</p>
+              <p className="sm:hidden">Settings</p>
             </div>
             <div className="flex items-center gap-5 mt-[3rem] hover:text-white">
               <span>
                 <RxExit />
               </span>
-              <p className="sm:hideen">Log Out</p>
+              <p className="sm:hidden">Log Out</p>
             </div>
           </div>
         </div>
