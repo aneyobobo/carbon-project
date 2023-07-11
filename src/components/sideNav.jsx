@@ -20,13 +20,13 @@ const SideNav = () => {
               <span>
                 <LiaHomeSolid />
               </span>
-              Home
+              <p className="sm:hideen">Home</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <ImStatsBars />
               </span>
-              Activity
+              <p className="sm:hideen">Activity</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
@@ -38,25 +38,25 @@ const SideNav = () => {
               <span>
                 <BsArrowLeftRight />
               </span>
-              Transactions
+              <p className="sm:hideen">Transactions</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <FiMail />
               </span>
-              Complaints
+              <p className="sm:hideen">Compliants</p>
             </div>
             <div className="flex items-center gap-5 pt-[1rem] hover:text-white">
               <span>
                 <BsGear />
               </span>
-              Settings
+              <p className="sm:hideen">Settings</p>
             </div>
             <div className="flex items-center gap-5 mt-[3rem] hover:text-white">
               <span>
                 <RxExit />
               </span>
-              Log-out
+              <p className="sm:hideen">Log Out</p>
             </div>
           </div>
         </div>
