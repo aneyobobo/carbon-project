@@ -31,25 +31,27 @@ const Main = () => {
       },
     ],
   };
+
   const customStyles = {
     rows: {
-        style: {
-            minHeight: '55px', // override the row height
-        },
+      style: {
+        minHeight: "55px", // override the row height
+      },
     },
     headCells: {
-        style: {
-            paddingLeft: '8px', // override the cell padding for head cells
-            paddingRight: '8px',
-        },
+      style: {
+        paddingLeft: "8px", // override the cell padding for head cells
+        paddingRight: "8px",
+      },
     },
     cells: {
-        style: {
-            paddingLeft: '8px', // override the cell padding for data cells
-            paddingRight: '8px',
-        },
+      style: {
+        paddingLeft: "8px", // override the cell padding for data cells
+        paddingRight: "8px",
+      },
     },
-};
+  };
+
   const columns = [
     {
       name: "Name",
@@ -57,7 +59,7 @@ const Main = () => {
     },
     {
       name: "Type",
-      selector: (row) => (row.type),
+      selector: (row) => row.type,
     },
     {
       name: "Date",
@@ -147,7 +149,7 @@ const Main = () => {
       <div className=" px-[2rem]">
         <div className="flex justify-between gap-5">
           <div className="w-[50%] my-[2rem] shadow-xl">
-            <img src={walletCard} alt="walletCard"  />
+            <img src={walletCard} alt="walletCard" />
           </div>
           <div className="w-[50%] pb-[3rem] p-[1rem] my-[2rem] h-[20rem] rounded-lg bg-white shadow-xl">
             <p className="text-lg font-bold">Carbon Stats</p>
@@ -160,7 +162,12 @@ const Main = () => {
           </div>
         </div>
         <div className="my-[4rem] hover:bg-[#d7ecfb]">
-          <DataTable className="bg-red-700" columns={columns} data={data} customStyles={customStyles} />
+          <DataTable
+            className="bg-red-700"
+            columns={columns}
+            data={data}
+            customStyles={customStyles}
+          />
         </div>
       </div>
     </div>

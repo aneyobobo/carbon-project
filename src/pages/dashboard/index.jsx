@@ -7,8 +7,12 @@ const Dashboard = () => {
   
   return (
     <Container>
-
-        <Main/>
+      <Main />
+      
+      
+      
+      
+      
     </Container>
    
   );
