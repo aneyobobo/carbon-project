@@ -15,7 +15,7 @@ const SideNav = () => {
     <div className="flex flex-col items-center ">
       <img src={Logo} alt="" className="md:p-3 " />
 
-      <div className="sm:p-4">
+      <div className="sm:p-4 text-[2rem]">
         <div className="flex items-center gap-5 pt-[3rem] hover:text-white md:px-3">
           <span>
             <LiaHomeSolid className="me"/>

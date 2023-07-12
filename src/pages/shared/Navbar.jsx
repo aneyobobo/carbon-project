@@ -12,9 +12,10 @@ const Navbar = () => {
     setToggled(!toggled);
   };
   return (
-    <div className="flex sm:flex-wrap justify-between items-center  px-[10rem] sm:px-0 md:px-1  py-[2rem] text-[1.4rem] sm:text-[1rem] fixed top-0 w-full">
-      <img src={logo} alt="logo" className="sm:w-[14rem]  " />
+    <div className="flex sm:flex-wrap justify-between items-center  px-[10rem] sm:px-0 md:px-10  py-[2rem] text-[1.4rem] sm:text-[1rem] fixed top-0 w-full">
+      <img src={logo} alt="logo" className="sm:w-[14rem]  sm:pl-3" />
 
+      <div className="sm:pr-3 ">
       <button onClick={handleClick}>
         {toggled ? (
           <MdOutlineCancel className="text-[3rem] lg:hidden md:hidden" />
@@ -22,6 +23,7 @@ const Navbar = () => {
           <GiHamburgerMenu className="text-[3rem] lg:hidden md:hidden" />
         )}
       </button>
+      </div>
 
       <div
         className={`${

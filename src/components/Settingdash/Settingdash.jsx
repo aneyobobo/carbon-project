@@ -5,14 +5,14 @@ import Button from "../Button/Button";
 const Settingdash = () => {
   return (
     <Container>
-      <div className=" px-[5rem] py-5 ">
-        <div className=" flex justify-between items-center px-3 bg-[#2B007A] py-3 text-white text-2xl">
+      <div className=" px-[5rem] sm:px-6 py-5 ">
+        <div className=" flex justify-between items-center px-3 bg-[#2B007A] py-3 text-white text-2xl sm:text-xl  ">
           <p className="">Setting</p>
           <p className="">Profile</p>
           <p className="">Bank</p>
           <p className="">Documentation</p>
         </div>
-        <form action="" className="font-semibold text-[1.5rem]">
+        <form action="" className="font-semibold sm:font-normal text-[1.5rem] sm:text-[1rem] sm-w-full">
           <h3 className="pt-4">Basic Information</h3>
           <div className="">
             <div className=" grid grid-cols-2 gap-x-8 gap-y-4 ">
@@ -57,10 +57,10 @@ const Settingdash = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-4 py-3 gap-6 ">
+            <div className="grid grid-cols-4 py-3 gap-6 sm:gap-0  ">
               <div className="grid grid-rows-1">
                 <label htmlFor="gender">Gender</label>
-                <select name="gender" id="gender" className=" py-3 px-3">
+                <select name="gender" id="gender" className=" py-3 px-3 sm:px-0">
                   <option value="gender" className="">
                     Gender
                   </option>
@@ -73,7 +73,7 @@ const Settingdash = () => {
                 <select
                   name="maritalstatus"
                   id="maritalstatus"
-                  className="border-2 py-3 px-3 "
+                  className="border-2 py-3 px-3  sm:px-0"
                 >
                   <option value="single" className="">
                     single
@@ -89,7 +89,7 @@ const Settingdash = () => {
                   name="Date of Birth"
                   id="Date of Birth"
                   placeholder="01/01/1886"
-                  className="border-2 px-2 py-3"
+                  className="border-2 px-2 py-3 sm:px-0"
                 />
               </div>
               <div className="grid grid-rows-1">

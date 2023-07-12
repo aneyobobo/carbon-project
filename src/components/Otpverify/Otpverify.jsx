@@ -5,7 +5,8 @@ import React from "react";
 import Button from "../Button/Button";
 
 const Otpverify = () => {
-  const [otp, setOtp] = useState(0)
+  const [otp, setOtp] = useState("")
+  
   return (
     <div className="flex justify-center items-center bg-verifyBG bg-cover bg-no-repeat h-screen">
       <div className="flex flex-col justify-center items-center ">
@@ -22,6 +23,7 @@ const Otpverify = () => {
           isInputNum = {true}
           renderSeparator={<span> - </span>}
           renderInput={(props) => <input {...props} />}
+          
         />
         <Button
           text="Verify E-mail"

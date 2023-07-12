@@ -22,7 +22,7 @@ const Landing = () => {
               <p className=" text-[2rem] sm:text-[1.5rem]  text-gray-700 w-[40rem] sm:w-[30rem] mt-[3rem] my-10 ">
                 Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et
                 massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                sapien. Get Started
+                sapien. 
               </p>
               <Button 
                 text="Get Started"

@@ -46,15 +46,15 @@ const Signup = () => {
   console.log(surname, otherName, email, pin, dob, gender);
   return (
     <div>
-      <img src={logo} alt="" className="ml-[10rem]" />
+      <img src={logo} alt="" className="ml-[10rem] sm:ml-[2rem]" />
       <div className="flex">
-        <div className="w-[50%] pl-[10rem]">
-          <img src={signup} alt="" className="py-[10rem]" />
+        <div className="w-[50%] pl-[10rem] md:pl-0 ">
+          <img src={signup} alt="" className="py-[10rem] md:py-[13rem]  sm:hidden " />
         </div>
 
-        <div className="flex flex-col gap w-[5rem] mx-[20rem] my-[20rem]">
+        <div className="flex flex-col gap w-[5rem] mx-[20rem] my-[20rem] md:my-[10rem] sm:mx-[-2rem] sm:my-[5rem]">
           <div className="self-center">
-            <div className="text-center my-8">
+            <div className="text-center my-8 ">
               <h3 className="text-4xl font-medium">Sign Up for an Account</h3>
               <p className="text-[1.4rem] pt-5">
                 Let's get you all set up for the Carbon experience
@@ -122,14 +122,14 @@ const Signup = () => {
                 </div>
 
                 <div className="flex gap-9 ">
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="" className="text-[1rem] font-medium">
-                      Date of Birth
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="" className="text-[1rem] font-medium ">
+                      DOB
                     </label>
                     <input
                       type="date"
-                      placeholder="Date of Birth"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
+                      placeholder="DOB"
+                      className=" pr-[8rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
                       value={dob}
                       onChange={getDob}
                     />
@@ -156,7 +156,7 @@ const Signup = () => {
               </div>
               <Button
                 text="Create Account"
-                bgclr="bg-[#4300C2] text-white  text-xl px-[10rem] py-[.7rem] rounded-md"
+                bgclr="bg-[#4300C2] text-white  text-xl px-[10rem] py-[.7rem] rounded-md sm:w-full md:w-full"
               />
 
               {/* <input type="submit" value="submit" /> */}

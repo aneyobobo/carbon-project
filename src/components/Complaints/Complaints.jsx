@@ -7,7 +7,7 @@ const Complaints = () => {
   return (
     // <ContainerTwo>
     <Container>
-      <div className="px-[5rem] py-5 mb-[5rem]">
+      <div className="px-[5rem] py-5 pb-[13.8rem] ">
         <div className="bg-[#2B007A] text-white py-3">
           <p className="px-[2rem] text-xl">Complaints</p>
         </div>

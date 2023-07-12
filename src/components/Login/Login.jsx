@@ -27,14 +27,14 @@ const Login = () => {
   console.log(email, pin);
   return (
     <div className="">
-      <img src={logo} alt="logo" className="ml-[10rem]  " />
-      <div className="flex  w-full gap-[10rem]">
-        <div className="w-[65rem] mt-[12rem] mb-[18rem]">
-          <div className="px-[10rem] py-[2rem]">
-            <h3 className="text-[3rem] font-semibold text-center my-[1rem]">
+      <img src={logo} alt="logo" className="ml-[10rem] md:ml-[5rem] sm:ml-3  " />
+      <div className="flex  w-full gap-[10rem]  md:gap-[1rem] sm:gap-[3rem]">
+        <div className="w-[65rem] md:w-full md:ml-[5rem] sm:w-full mt-[12rem]  sm:ml-9 sm:mt-[6rem] mb-[18rem] sm:mb-[9rem]">
+          <div className="px-[10rem] md:px-[2rem] sm:px-[3rem] py-[2rem] sm:py-[1rem]">
+            <h3 className="text-[3rem] md:text-[2.5rem] sm:text-[2.5rem] font-semibold text-center my-[1rem]">
               Log in to your Account
             </h3>
-            <p className="my-[1rem] text-center text-[1.7rem]">
+            <p className="my-[1rem] text-center text-[1.7rem] md:text-[1.2rem] sm:text-[1.2rem]">
               Log in to you Account to continue the Carbon experience
             </p>
 
@@ -44,7 +44,7 @@ const Login = () => {
                   Enter Email
                 </label>
                 <input
-                  className="pl-[3rem] pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2"
+                  className="pl-[3rem] pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2 outline-[#2b007a]"
                   type="email"
                   placeholder="Enter Email Address"
                   value={email}
@@ -57,7 +57,7 @@ const Login = () => {
                   Enter PIN
                 </label>
                 <input
-                  className="pl-[3rem] pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2 "
+                  className="pl-[3rem] pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2 outline-[#2b007a] "
                   type={visible ? 'text': 'password'}
                   placeholder="Enter PIN"
                   value={pin}
@@ -74,10 +74,10 @@ const Login = () => {
               <Button
                 className=""
                 text="Login in"
-                bgclr="bg-[#4300C2] text-white  text-2xl px-[19.5rem] py-[.7rem] rounded-md "
+                bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.7rem] rounded-md "
                 
               />
-              {/* <input type="Submit" Value="Submit" /> */}
+            
             </form>
 
             <div className="text-2xl flex gap-3">
@@ -87,8 +87,8 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="">
-          <img src={Loginpage} alt="" className="w-[50rem] mt-[10rem]" />
+        <div className=" md:w-full">
+          <img src={Loginpage} alt="" className=" lg:w-[80%] md:mt-[15rem] mt-[10rem] sm:hidden" />
         </div>
       </div>
     </div>
