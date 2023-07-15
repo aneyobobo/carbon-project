@@ -5,26 +5,36 @@ import Loginpage from "../../assets/loginpage.png";
 import { useState } from "react";
 import { BsFillEyeSlashFill } from "react-icons/bs";
 import { LiaEyeSolid } from "react-icons/lia";
+import axios from "axios";
+
+
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [pin, setPin] = useState("");
+  const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
 
   const getEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const getPin = (e) => {
-    setPin(e.target.value);
+  const getPassword = (e) => {
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEmail("");
-    setPin("");
+   
+      axios.post('https://carbon-api-test.azurewebsites.net/api/v1/user/login',{
+        email,
+        password,
+      }).then((response)=>{
+        console.log(response.data)
+      }).catch((error) =>{
+        console.log(error)
+      })
   };
 
-  console.log(email, pin);
+  // console.log(email, password);
   return (
     <div className="">
       <img src={logo} alt="logo" className="ml-[10rem] md:ml-[5rem] sm:ml-3  " />
@@ -49,19 +59,21 @@ const Login = () => {
                   placeholder="Enter Email Address"
                   value={email}
                   onChange={getEmail}
+                  required
                 />
               </div>
 
               <div className="flex flex-col gap-[.5rem] relative ">
                 <label htmlFor="" className="text-[1.5rem] font-semibold ">
-                  Enter PIN
+                  Enter Password
                 </label>
                 <input
                   className="pl-[3rem] pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2 outline-[#2b007a] "
                   type={visible ? 'text': 'password'}
-                  placeholder="Enter PIN"
-                  value={pin}
-                  onChange={getPin}
+                  placeholder="Enter Password"
+                  value={password}
+                  onChange={getPassword}
+                  required
                 />
                 <div className="absolute right-1 bottom-5">
                  {visible ? (<LiaEyeSolid onClick={() => setVisible(false)} size={20}/>) : (<BsFillEyeSlashFill onClick={() => setVisible(true)} size={20}/>)}

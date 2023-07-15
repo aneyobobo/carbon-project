@@ -3,7 +3,10 @@ import logo from "../../assets/carbon.png";
 import signup from "../../assets/signup.png";
 import Button from "../Button/Button";
 import { useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [surname, setSurname] = useState("");
@@ -14,6 +17,10 @@ const Signup = () => {
   const [repeat_password, setrepeat_password] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
+
+useEffect(() => {
+ localStorage.setItem('emailForOTP', JSON.stringify(email))
+}, [email])
 
   const getSurname = (e) => {
     setSurname(e.target.value);
@@ -46,11 +53,33 @@ const Signup = () => {
   const getGender = (e) => {
     setGender(e.target.value);
   };
+
+const Toast = (res,message) => {
+  if(res === success){
+    toast.success(message)
+  }else{
+    toast.error(message)
+  }
+
+}
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(!surname || !othernames || !email || !password || !phone || !repeat_password || password !== repeat_password || !dob || !gender){
-      throw new Error ('pls fill the inputs')
+    // if(!surname || !othernames || !email || !password || !phone || !repeat_password  || !dob || !gender){
+    //    toast.error('pls inputs all fields')
+    // }
+
+    // if(password !== repeat_password){
+    //   toast.error('pls password and repeat password must match')
+    // }
+
+    if(email === success){
+      Toast("success","Thanks for Signing up" )      
+    }else{
+      Toast("error", "Kindly input an email address")
     }
+
 
     axios.post('https://carbon-api-test.azurewebsites.net/api/v1/user/register', {
       surname,
@@ -62,12 +91,13 @@ const Signup = () => {
       dob,
       gender
     }).then((response)=>{
-      console.log(response.data)
-    }).catch((err)=>{console.log(err)})
+      console.log(response.data)})
+      
+      .catch((err)=>{console.log(err)})
 
   };
 
-  console.log(surname, othernames, email, phone, dob, gender, password, repeat_password);
+  // console.log(surname, othernames, email, phone, dob, gender, password, repeat_password);
 
   return (
     <div>
@@ -216,8 +246,7 @@ const Signup = () => {
                 text="Create Account"
                 bgclr="bg-[#4300C2] text-white  text-xl px-[10rem] py-[.7rem] rounded-md sm:w-full md:w-full lg:w-full"
               />
-
-              {/* <input type="submit" value="submit" /> */}
+              <ToastContainer/>
             </form>
 
             <div className="flex gap-2">

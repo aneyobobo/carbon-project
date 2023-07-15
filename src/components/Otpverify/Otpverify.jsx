@@ -2,23 +2,29 @@ import { useState } from "react";
 import OtpInput from "react-otp-input";
 import axios from "axios";
 import Button from "../Button/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Otpverify = () => {
   const [otp, setOtp] = useState("");
-  const email = "gbemineeyi@gmail.com";
+  const email = "cojiver147@kameili.com";
+
+
+
 
   function sendOtp() {
-    axios
-      .patch(
+    axios.patch(
         `https://carbon-api-test.azurewebsites.net/api/v1/user/verify/${otp}/${email}`
       )
       .then((response) => {
         console.log(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err);   
       });
   }
+
+
 
   return (
     <div className="flex justify-center items-center bg-verifyBG bg-cover bg-no-repeat h-screen">
@@ -41,54 +47,16 @@ const Otpverify = () => {
           renderSeparator={<span> - </span>}
           renderInput={(props) => <input {...props} />}
         />
-        {/* <Button
+
+        <Button
           text="Verify OTP"
           bgclr="bg-[#4300C2] text-white text-xl px-[2.4rem] py-[.7rem] rounded-md mt-5"
           onClick={sendOtp}
-        /> */}
+        />
 
-        <button
-          type="submit"
-          className="bg-[#4300C2] text-white text-xl px-[2.4rem] py-[.7rem] rounded-md mt-5"
-          onClick={sendOtp}
-        >
-          Verify OTP
-        </button>
       </div>
     </div>
   );
 };
 
 export default Otpverify;
-
-// import React, { useState } from 'react';
-// import OtpInput from 'react-otp-input';
-// import axios from 'axios';
-
-// export default function Otpverify() {
-//   const [otp, setOtp] = useState('');
-//   const email = 'oluwagbeminiyi.folarin@alphabetallp.tech'
-
-//   function sendOtp(){
-//     axios.patch(`https://carbon-api-test.azurewebsites.net/api/v1/user/verify/${otp}/${email}`
-//     ).then((response)=>{
-//       console.log(response.data)
-//     }).catch((err)=>{console.log(err)})
-//   }
-//   return (
-//     <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100%', position:'absolute'}}
-//     >
-//       <OtpInput
-//       value={otp}
-//       onChange={setOtp}
-//       numInputs={6}
-//       renderSeparator={<span>-</span>}
-//       renderInput={(props) => <input {...props} />}
-
-//     />
-//     <br/>
-//     <button type="submit" onClick={sendOtp}>Send</button>
-//     </div>
-
-//   );
-// }

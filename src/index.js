@@ -23,8 +23,8 @@ root.render(
  {/* <Landing/>   */}
   {/* <Dashboard/> */}
    {/* <Login/> */}
-  {/* <Signup/>  */}
-  <Otpverify/>
+  <Signup/> 
+  {/* <Otpverify/> */}
   {/* <Settingdash/> */}
   {/* <Complaints/>  */}
   {/* <Utilitydash/> */}
