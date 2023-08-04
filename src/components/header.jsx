@@ -24,6 +24,7 @@ const Header = () => {
               src={chelsea}
               alt=""
               className="rounded-[50%] w-[4rem] h-[4rem]"
+              // value={}
             />
           </div>
         </div>

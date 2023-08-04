@@ -4,8 +4,12 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineCancel } from "react-icons/md";
 import "animate.css";
+import { Link, Navigate } from "react-router-dom";
+
+
 
 const Navbar = () => {
+  // const navigate = Navigate('/Login')
   const [toggled, setToggled] = useState(false);
 
   const handleClick = () => {
@@ -28,7 +32,7 @@ const Navbar = () => {
       <div
         className={`${
           toggled ? "block animate__animated animate__fadeInLeft" : "hidden"
-        }  lg:flex sm:bg-[#4300C2]  sm:h-screen md:flex lg:gap-[37rem] md:gap-[2rem] sm:w-full gap-[4rem] sm:gap-5 sm:flex-col `}
+        }  lg:flex sm:bg-[#4300C2]  sm:h-screen md:flex lg:gap-[21rem] md:gap-[2rem] sm:w-full gap-[4rem] sm:gap-5 sm:flex-col `}
       >
         <div className="flex sm:flex-col  pr-[10rem] lg:gap-x-[6rem] sm:gap-y-[2rem] md:gap-10 lg:text-[#4300C2] md:text-[#4300C2]  sm:text-white sm:pl-10 sm:my-[5rem] sm:text-[2rem]">
           <p className="">Home</p>
@@ -36,15 +40,20 @@ const Navbar = () => {
           <p className="">Contact Us</p>
         </div>
         <div className="flex sm:flex gap-[1.8rem] sm:text-xl sm:font-bold items-center sm:pl-10">
+        <Link to='/login'>
           <Button
             text="Login"
             bgclr="bg-white text-[#4300C2]  px-[2.4rem] py-[.6rem] rounded-md"
           />
+          </Link>
 
+          <Link to='/signup'>
           <Button
             text="Sign Up"
             bgclr="bg-white text-[#4300C2]  px-[2.4rem] py-[.6rem] rounded-md"
+            // navigate={navigate}
           />
+          </Link>
         </div>
       </div>
     </div>

@@ -1,8 +1,31 @@
 import React from "react";
 import Container from "../sharedComponent/container";
+import { useState } from "react";
 import Button from "../Button/Button";
 
+
 const Settingdash = () => {
+// const [title, setTile] = useState('')
+// const [first, setFirstname] = useState('')
+// const [last, setLastname] = useState('')
+// const [maiden, setMaiden] = useState('')
+// const [gender, setGender] = useState('')
+// const [single, setSingle] = useState('')
+// const [date, setDate] = useState('')
+// const [religion, setReligion] = useState('')
+// const [phone, setPhone] = useState('')
+// const [email, setEmail] = useState('')
+// const [address, setAddress] = useState('')
+// const [stateoforgin, setStateoforigin] = useState('')
+// const [lga, setLga] = useState('')
+// const [hometown, setHometown] = useState('')
+// const [nationality, setNationality] = useState('')
+
+
+
+
+
+
   return (
     <Container>
       <div className=" px-[5rem] sm:px-6 py-5 ">

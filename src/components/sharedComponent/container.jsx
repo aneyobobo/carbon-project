@@ -10,7 +10,7 @@ const Container = ({children}) => {
         <SideNav />
       </div>
 
-      <div className="bg-mainBG w-[80%]">
+      <div className="bg-mainBG w-[80%] h-screen">
         <Header/>
         {children}
       </div>

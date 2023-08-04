@@ -3,115 +3,109 @@ import logo from "../../assets/carbon.png";
 import signup from "../../assets/signup.png";
 import Button from "../Button/Button";
 import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  useSignupContext,
+  useTargetsetState,
+} from "../../pages/shared/context";
 
 const Signup = () => {
-  const [surname, setSurname] = useState("");
-  const [othernames, setothernames] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeat_password, setrepeat_password] = useState("");
-  const [dob, setDob] = useState("");
-  const [gender, setGender] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
-useEffect(() => {
- localStorage.setItem('emailForOTP', JSON.stringify(email))
-}, [email])
+  const navigate = useNavigate();
 
-  const getSurname = (e) => {
-    setSurname(e.target.value);
-  };
+  const signupData = useSignupContext();
+  // console.log(signupData)
 
-  const getotherName = (e) => {
-    setothernames(e.target.value);
-  };
+  const {
+    getSurname,
+    getOthernames,
+    getPhone,
+    getPassword,
+    getRepeatPassword,
+    getEmail,
+    getDob,
+    getGender,
+  } = useTargetsetState();
 
-  const getPhone = (e) => {
-    setPhone(e.target.value);
-  };
+  // console.log(useTargetsetState())
 
-  const getPassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
 
-  const getrepeat_password = (e) => {
-    setrepeat_password(e.target.value);
-  };
+      if (
+        !signupData.surname ||
+        !signupData.othernames ||
+        !signupData.email ||
+        !signupData.password ||
+        !signupData.phone ||
+        !signupData.repeat_password ||
+        !signupData.dob ||
+        !signupData.gender
+      ) {
+        throw new Error("pls inputs all fields");
+      }
 
-  const getEmail = (e) => {
-    setEmail(e.target.value);
-  };
+      if (signupData.password !== signupData.repeat_password) {
+        toast.error("pls password and repeat password must match");
+      }
 
-  const getDob = (e) => {
-    setDob(e.target.value);
-  };
+      setLoading(true);
+      setDisabled(true);
 
-  const getGender = (e) => {
-    setGender(e.target.value);
-  };
+      const register = await axios.post(
+        
+        "https://carbon-api-test.azurewebsites.net/api/v1/user/register",
 
-const Toast = (res,message) => {
-  if(res === success){
-    toast.success(message)
-  }else{
-    toast.error(message)
-  }
+        signupData
 
-}
+        
+    );
 
+    console.log(signupData)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // if(!surname || !othernames || !email || !password || !phone || !repeat_password  || !dob || !gender){
-    //    toast.error('pls inputs all fields')
-    // }
+      setLoading(false);
+      setDisabled(false);
 
-    // if(password !== repeat_password){
-    //   toast.error('pls password and repeat password must match')
-    // }
+      console.log(register);
 
-    if(email === success){
-      Toast("success","Thanks for Signing up" )      
-    }else{
-      Toast("error", "Kindly input an email address")
+      toast.success("Carbon Account Created Successfully");
+
+      navigate("/otp");
+    } catch (error) {
+      console.log("niyi", error);
+
+      setLoading(false);
+      setDisabled(false);
+
+      toast.error(error|| "Something went wrong");
     }
-
-
-    axios.post('https://carbon-api-test.azurewebsites.net/api/v1/user/register', {
-      surname,
-      othernames,
-      email,
-      password,
-      repeat_password,
-      phone,
-      dob,
-      gender
-    }).then((response)=>{
-      console.log(response.data)})
-      
-      .catch((err)=>{console.log(err)})
-
   };
 
-  // console.log(surname, othernames, email, phone, dob, gender, password, repeat_password);
+ 
 
   return (
     <div>
-      <img src={logo} alt="" className="ml-[10rem] sm:ml-[2rem]" />
+      <Link to="/">
+        <button className="cursor-pointer">
+          <img src={logo} alt="" className="ml-[10rem] sm:ml-[2rem]" />
+        </button>
+      </Link>
       <div className="flex">
         <div className="w-[50%] pl-[10rem] md:pl-0 ">
           <img
             src={signup}
-            alt=""
+            alt="signup img"
             className="py-[10rem] md:py-[13rem]  sm:hidden "
           />
         </div>
 
-        <div className="flex flex-col gap w-[5rem] mx-[20rem] my-[15rem] md:my-[10rem] sm:mx-[-2rem] sm:my-[5rem]">
+        <div className="flex flex-col gap w-[5rem] mx-[20rem] my-[15rem] md:my-[6rem] sm:mx-[-2rem] sm:my-[5rem]">
           <div className="self-center">
             <div className="text-center my-8 ">
               <h3 className="text-4xl font-medium">Sign Up for an Account</h3>
@@ -130,7 +124,7 @@ const Toast = (res,message) => {
                       type="text"
                       placeholder="Surname"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={surname}
+                      value={signupData.surname}
                       onChange={getSurname}
                     />
                   </div>
@@ -146,8 +140,8 @@ const Toast = (res,message) => {
                       type="text"
                       placeholder="Other Names"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={othernames}
-                      onChange={getotherName}
+                      value={signupData.othernames}
+                      onChange={getOthernames}
                     />
                   </div>
                 </div>
@@ -161,7 +155,7 @@ const Toast = (res,message) => {
                       type="text"
                       placeholder="Email"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={email}
+                      value={signupData.email}
                       onChange={getEmail}
                     />
                   </div>
@@ -174,7 +168,7 @@ const Toast = (res,message) => {
                       type="phone"
                       placeholder="Phone"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={phone}
+                      value={signupData.phone}
                       onChange={getPhone}
                     />
                   </div>
@@ -186,10 +180,11 @@ const Toast = (res,message) => {
                       Password
                     </label>
                     <input
+                      minLength={8}
                       type="password"
                       placeholder="Password"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={password}
+                      value={signupData.password}
                       onChange={getPassword}
                     />
                   </div>
@@ -199,11 +194,12 @@ const Toast = (res,message) => {
                       Repeat-password
                     </label>
                     <input
+                      minLength={8}
                       type="password"
                       placeholder="Repeat-password"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={repeat_password}
-                      onChange={getrepeat_password}
+                      value={signupData.repeat_password}
+                      onChange={getRepeatPassword}
                     />
                   </div>
                 </div>
@@ -217,7 +213,7 @@ const Toast = (res,message) => {
                       type="date"
                       placeholder="DOB"
                       className=" pr-[8rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={dob}
+                      value={signupData.dob}
                       onChange={getDob}
                     />
                   </div>
@@ -230,7 +226,7 @@ const Toast = (res,message) => {
                       type="text"
                       placeholder="Gender"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={gender}
+                      value={signupData.gender}
                       onChange={getGender}
                     />
                   </div>
@@ -243,10 +239,12 @@ const Toast = (res,message) => {
                 </div>
               </div>
               <Button
-                text="Create Account"
+                text={loading ? "... Loading" : "Create Account"}
+                disabled={disabled}
+                loading={loading}
                 bgclr="bg-[#4300C2] text-white  text-xl px-[10rem] py-[.7rem] rounded-md sm:w-full md:w-full lg:w-full"
               />
-              <ToastContainer/>
+              <ToastContainer />
             </form>
 
             <div className="flex gap-2">
