@@ -18,6 +18,7 @@ import GlobalContext from "./pages/shared/context";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fallback from "./components/fallback/Fallback";
 import Getprofile from "./components/Getprofile/Getprofile";
+import Transaction from "./components/Transactions/Transaction";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -37,6 +38,9 @@ root.render(
         <Route path='/' element={<Utilitydash/>  }/>
         <Route path='/' element={<Airtimedash/> }/>
         <Route path='/' element={<Cable /> }/> */}
+        {/* <Route path='/transacton' element={<Transaction/>}/> */}
+        <Route path='/transaction'element={<Transaction/>}/>
+
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/updateprofile' element={<Getprofile/>}/>
         <Route path="*" element={<Fallback/>}/>
