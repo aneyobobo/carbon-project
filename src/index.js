@@ -33,12 +33,11 @@ root.render(
         <Route path='/login' element={<Login />}/>
         <Route path='/dashboard' element={<Dashboard/> }/>
         <Route path='/otp' element={<Otpverify /> }/>
-        {/* <Route path='/' element={<Settingdash/> }/>
-        <Route path='/' element={<Complaints/>  }/>
-        <Route path='/' element={<Utilitydash/>  }/>
-        <Route path='/' element={<Airtimedash/> }/>
-        <Route path='/' element={<Cable /> }/> */}
-        {/* <Route path='/transacton' element={<Transaction/>}/> */}
+        <Route path='/setting' element={<Settingdash/> }/>
+        <Route path='/complaints' element={<Complaints/>  }/>
+        <Route path='/utility' element={<Utilitydash/>  }/>
+        <Route path='/airtime' element={<Airtimedash/> }/>
+        <Route path='/cable' element={<Cable /> }/>
         <Route path='/transaction'element={<Transaction/>}/>
 
         <Route path='/profile' element={<Profile/>}/>
