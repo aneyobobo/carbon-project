@@ -1,12 +1,10 @@
-import logo from "../../assets/carbon.png";
-import Button from "../../components/Button/Button";
+import logo from "./../assets/carbon.png"
+import Button from "./Button/Button";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineCancel } from "react-icons/md";
 import "animate.css";
 import { Link, Navigate } from "react-router-dom";
-
-
 
 const Navbar = () => {
   // const navigate = Navigate('/Login')
@@ -20,13 +18,13 @@ const Navbar = () => {
       <img src={logo} alt="logo" className="sm:w-[14rem]  sm:pl-3" />
 
       <div className="sm:pr-3 ">
-      <button onClick={handleClick}>
-        {toggled ? (
-          <MdOutlineCancel className="text-[3rem] lg:hidden md:hidden" />
-        ) : (
-          <GiHamburgerMenu className="text-[3rem] lg:hidden md:hidden" />
-        )}
-      </button>
+        <button onClick={handleClick}>
+          {toggled ? (
+            <MdOutlineCancel className="text-[3rem] lg:hidden md:hidden" />
+          ) : (
+            <GiHamburgerMenu className="text-[3rem] lg:hidden md:hidden" />
+          )}
+        </button>
       </div>
 
       <div
@@ -40,19 +38,19 @@ const Navbar = () => {
           <p className="">Contact Us</p>
         </div>
         <div className="flex sm:flex gap-[1.8rem] sm:text-xl sm:font-bold items-center sm:pl-10">
-        <Link to='/login'>
-          <Button
-            text="Login"
-            bgclr="bg-white text-[#4300C2]  px-[2.4rem] py-[.6rem] rounded-md"
-          />
+          <Link to="/login">
+            <Button
+              text="Login"
+              bgclr="bg-white text-[#4300C2]  px-[2.4rem] py-[.6rem] rounded-md"
+            />
           </Link>
 
-          <Link to='/signup'>
-          <Button
-            text="Sign Up"
-            bgclr="bg-white text-[#4300C2]  px-[2.4rem] py-[.6rem] rounded-md"
-            // navigate={navigate}
-          />
+          <Link to="/signup">
+            <Button
+              text="Sign Up"
+              bgclr="bg-white text-[#4300C2]  px-[2.4rem] py-[.6rem] rounded-md"
+              // navigate={navigate}
+            />
           </Link>
         </div>
       </div>

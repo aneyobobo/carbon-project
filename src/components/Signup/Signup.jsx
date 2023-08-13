@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   useSignupContext,
   useTargetsetState,
-} from "../../pages/shared/context";
+} from "../context/context";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -53,6 +53,10 @@ const Signup = () => {
 
       if (signupData.password !== signupData.repeat_password) {
         toast.error("pls password and repeat password must match");
+      }
+
+      if (signupData.password.length <= 6 ) {
+        throw new Error("password less than 6 character");
       }
 
       setLoading(true);
@@ -125,7 +129,7 @@ const Signup = () => {
                       placeholder="Surname"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
                       value={signupData.surname}
-                      onChange={getSurname}
+                      onChange={(getSurname)}
                     />
                   </div>
 
@@ -180,7 +184,7 @@ const Signup = () => {
                       Password
                     </label>
                     <input
-                      minLength={8}
+                      // minLength={8}
                       type="password"
                       placeholder="Password"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
@@ -194,7 +198,7 @@ const Signup = () => {
                       Repeat-password
                     </label>
                     <input
-                      minLength={8}
+                      // minLength={8}
                       type="password"
                       placeholder="Repeat-password"
                       className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"

@@ -14,11 +14,12 @@ import Utilitydash from "./components/Utility/Utilitydash";
 import Airtimedash from "./components/Airtime/Airtimedash";
 import Cable from "./components/Cable/Cable";
 import Profile  from "./components/profile/Profile";
-import GlobalContext from "./pages/shared/context";
+import GlobalContext from "./components/context/context";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fallback from "./components/fallback/Fallback";
 import Getprofile from "./components/Getprofile/Getprofile";
 import Transaction from "./components/Transactions/Transaction";
+import TopUp from "./topUp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -42,7 +43,9 @@ root.render(
 
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/updateprofile' element={<Getprofile/>}/>
+        <Route path="/topup" element={<TopUp/>} />
         <Route path="*" element={<Fallback/>}/>
+        
       </Routes>
       
       </BrowserRouter>

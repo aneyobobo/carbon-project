@@ -4,8 +4,10 @@ import axios from "axios";
 import Button from "../Button/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSignupContext } from "../../pages/shared/context";
+// import { useSignupContext } from "../context/context";
+// import { useSignupContext } from "../context/context";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useSignupContext } from "../context/context";
 
 
 const Otpverify = () => {

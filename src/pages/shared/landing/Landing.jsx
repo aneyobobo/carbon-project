@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../../components/Button/Button";
 import Landingpage from '../../../assets/landingpage.jpg'
-import Navbar from "../Navbar";
+import Navbar from "../../../components/Navbar";
 
 
 const Landing = () => {

@@ -9,7 +9,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useSignupContext, useTargetsetState } from "../../pages/shared/context";
+import { useSignupContext, useTargetsetState } from "../context/context";
 
 
 const Login = () => {
@@ -33,11 +33,11 @@ const Login = () => {
       );
       console.log(login);
       localStorage.setItem("token", login.data.token);
-      toast.success(login.data.message);
+      // toast.success(login.data.message);
       navigate("/dashboard")
     } catch (error) {
-      toast.error(error.response.data.message);
-      console.log(error);
+      // toast.error(error.response.data.message);
+      console.log("niyi",error);
     }
 
   
