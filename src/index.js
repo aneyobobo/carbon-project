@@ -19,7 +19,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fallback from "./components/fallback/Fallback";
 import Getprofile from "./components/Getprofile/Getprofile";
 import Transaction from "./components/Transactions/Transaction";
-import TopUp from "./topUp";
+import TopUp from "./components/topUp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

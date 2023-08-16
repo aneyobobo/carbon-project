@@ -4,17 +4,16 @@ import signup from "../../assets/signup.png";
 import Button from "../Button/Button";
 import { useState } from "react";
 import axios from "axios";
+import { MdVisibilityOff, MdVisibility } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  useSignupContext,
-  useTargetsetState,
-} from "../context/context";
+import { useSignupContext, useTargetsetState } from "../context/context";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -55,23 +54,23 @@ const Signup = () => {
         toast.error("pls password and repeat password must match");
       }
 
-      if (signupData.password.length <= 6 ) {
-        throw new Error("password less than 6 character");
+      if (signupData.password.length < 6) {
+        // throw new Error("password less than 6 character");
+        return "password less than 6"
       }
 
       setLoading(true);
       setDisabled(true);
 
       const register = await axios.post(
-        
         "https://carbon-api-test.azurewebsites.net/api/v1/user/register",
 
         signupData
+      );
 
-        
-    );
+      // console.log(signupData);
+      
 
-    console.log(signupData)
 
       setLoading(false);
       setDisabled(false);
@@ -87,11 +86,9 @@ const Signup = () => {
       setLoading(false);
       setDisabled(false);
 
-      toast.error(error|| "Something went wrong");
+      toast.error(error || "Something went wrong");
     }
   };
-
- 
 
   return (
     <div>
@@ -127,9 +124,9 @@ const Signup = () => {
                     <input
                       type="text"
                       placeholder="Surname"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
+                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem]  rounded-lg ring-1 ring-black text-xl"
                       value={signupData.surname}
-                      onChange={(getSurname)}
+                      onChange={getSurname}
                     />
                   </div>
 
@@ -143,7 +140,7 @@ const Signup = () => {
                     <input
                       type="text"
                       placeholder="Other Names"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
+                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] ring-1 ring-black text-xl rounded-lg"
                       value={signupData.othernames}
                       onChange={getOthernames}
                     />
@@ -158,7 +155,7 @@ const Signup = () => {
                     <input
                       type="text"
                       placeholder="Email"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
+                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem]  ring-1 ring-black text-xl rounded-lg"
                       value={signupData.email}
                       onChange={getEmail}
                     />
@@ -171,7 +168,7 @@ const Signup = () => {
                     <input
                       type="phone"
                       placeholder="Phone"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
+                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] ring-1 ring-black text-xl rounded-lg"
                       value={signupData.phone}
                       onChange={getPhone}
                     />
@@ -183,28 +180,87 @@ const Signup = () => {
                     <label htmlFor="" className="text-[1rem] font-medium ">
                       Password
                     </label>
-                    <input
-                      // minLength={8}
-                      type="password"
-                      placeholder="Password"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={signupData.password}
-                      onChange={getPassword}
-                    />
+
+                    <div className="flex flex-row items-center relative">
+                      <input
+                        type={visible ? "text" : "password"}
+                        placeholder="Password"
+                        className=" pr-[5.5rem] pt-[1rem] pb-[.5rem]  ring-1 ring-black text-xl rounded-lg "
+                        value={signupData.password}
+                        onChange={getPassword}
+                      />
+                      <div className="absolute right-1">
+                        {visible ? (
+                          <MdVisibility
+                            size={15}
+                            onClick={() => {
+                              setVisible(false);
+                            }}
+                          />
+                        ) : (
+                          <MdVisibilityOff
+                            size={15}
+                            onClick={() => {
+                              setVisible(true);
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="" className="text-[1rem] font-medium">
-                      Repeat-password
+                  <div className="flex flex-col gap-2 ">
+                    <label htmlFor="" className="text-[1rem] font-medium ">
+                      Repeat Password
                     </label>
-                    <input
-                      // minLength={8}
-                      type="password"
-                      placeholder="Repeat-password"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
-                      value={signupData.repeat_password}
-                      onChange={getRepeatPassword}
-                    />
+                    <div className="flex flex-row items-center relative ">
+                      <input
+                        type={visible ? "text" : "password"}
+                        placeholder="Password"
+                        className=" pr-[5.5rem] pt-[1rem] pb-[.5rem]  ring-1 ring-black text-xl rounded-lg "
+                        value={signupData.repeat_password}
+                        onChange={getRepeatPassword}
+                      />
+
+                      <div className="absolute right-1">
+                        {visible ? (
+                          <MdVisibility
+                            size={15}
+                            onClick={() => {
+                              setVisible(false);
+                            }}
+                          />
+                        ) : (
+                          <MdVisibilityOff
+                            size={15}
+                            onClick={() => {
+                              setVisible(true);
+                            }}
+                          />
+                        )}
+                      </div>
+
+                      {/* {visible ? (
+                        <MdVisibilityOff
+                          size={16}
+                          className="absolute right-[1rem] cursor-pointer"
+                          onClick={() => {
+                            setVisible(!visible);
+                          }}
+                        />
+                      ) : (
+                        <div
+                          onClick={() => {
+                            setVisible(visible);
+                          }}
+                        >
+                          <MdVisibility
+                            size={16}
+                            className="absolute right-[1rem] cursor-pointer"
+                          />
+                        </div>
+                      )} */}
+                    </div>
                   </div>
                 </div>
 
@@ -216,7 +272,7 @@ const Signup = () => {
                     <input
                       type="date"
                       placeholder="DOB"
-                      className=" pr-[8rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
+                      className=" pr-[9rem] pt-[1rem] pb-[.5rem] ring-1 ring-black text-xl rounded-lg"
                       value={signupData.dob}
                       onChange={getDob}
                     />
@@ -229,7 +285,7 @@ const Signup = () => {
                     <input
                       type="text"
                       placeholder="Gender"
-                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] border-2 rounded-lg"
+                      className=" pr-[5.5rem] pt-[1rem] pb-[.5rem] ring-1 ring-black text-xl rounded-lg"
                       value={signupData.gender}
                       onChange={getGender}
                     />

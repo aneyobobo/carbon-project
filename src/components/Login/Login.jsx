@@ -68,7 +68,7 @@ const Login = () => {
                   Enter Email
                 </label>
                 <input
-                  className="pl-[3rem] pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2 outline-[#2b007a]"
+                  className="pl-3 pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2 ring-1 ring-black text-2xl"
                   type="email"
                   placeholder="Enter Email Address"
                   value={loginData.email}
@@ -82,7 +82,7 @@ const Login = () => {
                   Enter Password
                 </label>
                 <input
-                  className="pl-[3rem] pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2 outline-[#2b007a] "
+                  className="pl-3 pr-[1.6rem] pt-[1.3rem] pb-[1.3rem] border-2  ring-1 ring-black text-2xl "
                   type={visible ? "text" : "password"}
                   placeholder="Enter Password"
                   value={loginData.password}

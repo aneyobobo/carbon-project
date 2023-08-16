@@ -1,10 +1,11 @@
 import React from "react";
-import { useSignupContext, useTargetsetState } from "./components/context/context";
+import { useSignupContext, useTargetsetState } from "./context/context";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./components/Button/Button";
+import Button from "./Button/Button";
 import { MdOutlinePayment } from "react-icons/md";
+
 
 const TopUp = () => {
   const navigate = useNavigate();
@@ -17,8 +18,6 @@ const TopUp = () => {
   function getAmount(e) {
     setAmount(e.target.value);
   }
-
-  console.log(email, amount);
 
   const handleSubmit = async (e) => {
     const token = localStorage.getItem("token");
@@ -38,17 +37,19 @@ const TopUp = () => {
         },
       });
       console.log(caller);
-      //    navigate("/https://checkout.paystack.com/bjq9eq21bwb06y5")
+      // navigate(caller.data.data.authorization_url);
     } catch (error) {
       console.log(error);
     }
   };
 
+ 
+
+
   return (
     <div className="flex justify-center items-center">
       <form
-        action=""
-        className="flex flex-col items-center border-2 border-amber-600 rounded-3xl px-9"
+        className="flex flex-col items-center border-2 border-amber-600 rounded-3xl px-10 py-10"
         onSubmit={handleSubmit}
       >
         <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full">
@@ -62,12 +63,12 @@ const TopUp = () => {
           </p>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col w-full gap-3">
           <label className="text-xl font-medium " htmlFor="">
             Email
           </label>
           <input
-            className="py-4 pr-[20rem] "
+            className="py-3 px-3 ring-1 ring-black text-xl"
             type="text"
             value={email}
             onChange={getEmail}
@@ -76,7 +77,7 @@ const TopUp = () => {
             Amount
           </label>
           <input
-            className="py-4 pr-[20rem]"
+            className="py-3 px-3 ring-1 ring-black text-xl"
             type="text"
             value={amount}
             onChange={getAmount}

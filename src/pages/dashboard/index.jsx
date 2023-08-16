@@ -10,9 +10,6 @@ const Dashboard = () => {
       <Main />
       
       
-      
-      
-      
     </Container>
    
   );

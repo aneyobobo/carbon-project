@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-// import Header from "./header";
+import { useNavigate } from "react-router-dom";
+import Button from "./Button/Button";
+import { MdOutlinePayment } from "react-icons/md";
 import { MdOutlineAddCard } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
 import { BsSendCheck } from "react-icons/bs";
 import { MdPayment } from "react-icons/md";
-import walletCard from "../assets/walletCard.png";
 import DataTable from "react-data-table-component";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import axios from "axios";
-import { useSignupContext, useTargetsetState } from "./context/context";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Main = () => {
@@ -119,37 +120,19 @@ const Main = () => {
       amount: "1000",
       type: "vdvdvd",
     },
-    {
-      id: 7,
-      name: "Beetlejuice",
-      date: "2023",
-      amount: "1000",
-      type: "1988",
-    },
-    {
-      id: 8,
-      name: "Ghostbusters",
-      date: "2023",
-      amount: "1000",
-      type: "vdvdvd",
-    },
-    {
-      id: 9,
-      name: "Beetlejuice",
-      date: "2023",
-      amount: "1000",
-      type: "1988",
-    },
-    {
-      id: 10,
-      name: "Ghostbusters",
-      date: "2023",
-      amount: "1000",
-      type: "vdvdvd",
-    },
   ];
 
   const [wallet, setWallet] = useState("");
+  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState("");
+  const [topUp, setTopUp] = useState(false);
+
+  function getEmail(e) {
+    setEmail(e.target.value);
+  }
+  function getAmount(e) {
+    setAmount(e.target.value);
+  }
 
   const apiCaller = async () => {
     const token = localStorage.getItem("token");
@@ -174,11 +157,97 @@ const Main = () => {
     apiCaller();
   }, []);
 
+  const handleSubmit = async (e) => {
+    const token = localStorage.getItem("token");
+    try {
+      e.preventDefault();
+      const caller = await axios({
+        method: "post",
+        url: "https://carbon-api-test.azurewebsites.net/api/v1/wallet/start",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+
+        data: {
+          email,
+          amount,
+        },
+      });
+      console.log(caller);
+      window.location.href = caller.data.data.authorization_url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
-      <div className=" px-[2rem] ">
+      <div className=" px-[2rem]">
         <div className="flex sm:flex-col justify-between gap-5 align-middle">
           <div className="w-[50%] sm:w-full my-[2rem] shadow-xl p-5 px-12">
+            {topUp && (
+              <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm ">
+                <div className="flex justify-center items-center ">
+                  <form
+                    className="flex flex-col items-center border-2 relative bg-white top-[15rem] rounded-3xl px-10 py-10"
+                    onSubmit={handleSubmit}
+                  >
+                    <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full">
+                      <MdOutlinePayment size={50} color="white" />
+                    </div>
+                    <div
+                      className="h-10 w-10 rounded-full absolute border-2 border-gray-400 flex items-center justify-center top-2 right-2 cursor-pointer"
+                      onClick={() => setTopUp(false)}
+                    >
+                      <IoMdClose size={24} color="gray" />
+                    </div>
+                    <div className="flex flex-col gap-5">
+                      <p className="text-4xl font-bold text-center">
+                        Top up your wallet
+                      </p>
+                      <p className="text-3xl font-normal text-center pb-4   ">
+                        Top up your wallet from your Bank
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col w-full gap-3">
+                      <label className="text-xl font-medium " htmlFor="">
+                        Email
+                      </label>
+                      <input
+                        className="py-3 px-3 ring-1 ring-black text-xl"
+                        type="text"
+                        value={email}
+                        onChange={getEmail}
+                      />
+                      <label className="text-xl font-medium " htmlFor="">
+                        Amount
+                      </label>
+                      <input
+                        className="py-3 px-3 ring-1 ring-black text-xl"
+                        type="text"
+                        value={amount}
+                        onChange={getAmount}
+                      />
+                    </div>
+
+                    <div className="flex gap-10 font-bold pt-5">
+                      <Button
+                        text="Proceed"
+                        bgclr="bg-[#dbd9dd] border-2 border-[#2b007a] text-[#2b007a] text-2xl w-full sm:w-full py-[.8rem] px-[1rem] rounded-md"
+                        onSubmit={handleSubmit}
+                      />
+                      <Button
+                        text="Cancel"
+                        bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.5rem] px-[2rem] rounded-md"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+
             <div className="flex justify-center flex-col">
               {/* <img src={walletCard} alt="walletCard" />  */}
               <div
@@ -195,27 +264,21 @@ const Main = () => {
 
               <div className="flex gap-32 mt-6 items-center justify-center">
                 <div
-                  className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col cursor-pointer"
-                  rounded-full
-                  style={{ backgroundColor: "#5832a8" }}
+                  className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col bg-[#5832a8] cursor-pointer"
+                  onClick={() => setTopUp(!topUp)}
                 >
                   <MdOutlineAddCard size={26} color="white" />
                   <p className="text-white font-bold">Top Up</p>
                 </div>
 
-                <div
-                  className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col cursor-pointer"
-                  rounded-full
-                  style={{ backgroundColor: "#5832a8" }}
-                >
+                <div className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col bg-[#5832a8] cursor-pointer">
                   <BsSendCheck size={26} color="white" />
                   <p className="text-white font-bold">Send</p>
                 </div>
 
                 <div
-                  className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col cursor-pointer"
-                  rounded-full
-                  style={{ backgroundColor: "#5832a8" }}
+                  className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col bg-[#5832a8] cursor-pointer "
+                  // style={{ backgroundColor: "#5832a8" }}
                 >
                   <MdPayment size={26} color="white" />
                   <p className="text-white font-bold">Withdraw</p>
