@@ -47,37 +47,51 @@ const Profile = () => {
         >
           <div className=" grid grid-cols-2 gap-x-8 gap-y-4 ">
             <div className="grid grid-rows-1">
-              <label htmlFor="title">Surname</label>
+              <label htmlFor="title" className="font-bold">
+                Surname
+              </label>
               <div>{profile.surname}</div>
             </div>
 
             <div className="grid grid-rows-1">
-              <label htmlFor="firstname">Other Names</label>
+              <label htmlFor="firstname" className="font-bold">
+                Other Names
+              </label>
               <div className="">{profile.othernames}</div>
             </div>
 
             <div className="grid grid-rows-1">
-              <label htmlFor="title">DOB</label>
-              <div>{profile.dob?.slice(0,10)}</div>
+              <label htmlFor="title" className="font-bold">
+                DOB
+              </label>
+              <div>{profile.dob?.slice(0, 10)}</div>
             </div>
 
             <div className="grid grid-rows-1">
-              <label htmlFor="title">Gender</label>
+              <label htmlFor="title" className="font-bold">
+                Gender
+              </label>
               <div>{profile.gender}</div>
             </div>
 
             <div className="grid grid-rows-1">
-              <label htmlFor="title">E-mail</label>
+              <label htmlFor="title" className="font-bold">
+                E-mail
+              </label>
               <div>{profile.email}</div>
             </div>
 
             <div className="grid grid-rows-1">
-              <label htmlFor="title">Marital Status</label>
+              <label htmlFor="title" className="font-bold">
+                Marital Status
+              </label>
               <div>{profile.marital_status}</div>
             </div>
 
             <div className="grid grid-rows-1">
-              <label htmlFor="title">Phone</label>
+              <label htmlFor="title" className="font-bold">
+                Phone
+              </label>
               <div>{profile.phone}</div>
             </div>
           </div>

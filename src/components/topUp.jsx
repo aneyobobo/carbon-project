@@ -7,13 +7,14 @@ import Button from "./Button/Button";
 import { MdOutlinePayment } from "react-icons/md";
 
 
-const TopUp = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [amount, setAmount] = useState("");
+const Send = () => {
 
-  function getEmail(e) {
-    setEmail(e.target.value);
+  
+  const [amount, setAmount] = useState("");
+  const [walletid, setWalletid]= useState("")
+
+  function getWalletid(e) {
+    setWalletid(e.target.value);
   }
   function getAmount(e) {
     setAmount(e.target.value);
@@ -32,11 +33,12 @@ const TopUp = () => {
         },
 
         data: {
-          email,
+          walletid,
           amount,
         },
       });
       console.log(caller);
+      console.log(walletid,amount);
       // navigate(caller.data.data.authorization_url);
     } catch (error) {
       console.log(error);
@@ -49,7 +51,7 @@ const TopUp = () => {
   return (
     <div className="flex justify-center items-center">
       <form
-        className="flex flex-col items-center border-2 border-amber-600 rounded-3xl px-10 py-10"
+        className="flex flex-col items-center border-2 border-amber-600 rounded-3xl px-10 py-[3rem]"
         onSubmit={handleSubmit}
       >
         <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full">
@@ -57,22 +59,15 @@ const TopUp = () => {
         </div>
 
         <div className="flex flex-col gap-5">
-          <p className="text-4xl font-bold text-center">Top up your wallet</p>
+          <p className="text-5xl font-bold text-center pt-5">
+            Send to a Carbon Wallet
+          </p>
           <p className="text-3xl font-normal text-center pb-4   ">
-            Top up your wallet from your Bank
+            Send money to another Carbon account
           </p>
         </div>
 
         <div className="flex flex-col w-full gap-3">
-          <label className="text-xl font-medium " htmlFor="">
-            Email
-          </label>
-          <input
-            className="py-3 px-3 ring-1 ring-black text-xl"
-            type="text"
-            value={email}
-            onChange={getEmail}
-          />
           <label className="text-xl font-medium " htmlFor="">
             Amount
           </label>
@@ -81,6 +76,16 @@ const TopUp = () => {
             type="text"
             value={amount}
             onChange={getAmount}
+          />
+
+          <label className="text-xl font-medium " htmlFor="">
+            Wallet I.D
+          </label>
+          <input
+            className="py-3 px-3 ring-1 ring-black text-xl"
+            type="text"
+            value={walletid}
+            onChange={getWalletid}
           />
         </div>
 
@@ -95,9 +100,13 @@ const TopUp = () => {
             bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.5rem] px-[2rem] rounded-md"
           />
         </div>
+        <div className="flex gap-2 pt-3 text-3xl">
+          <p className="">Your withdrawal limit is</p>
+          <p className=" text-red-600">N50,000</p>
+        </div>
       </form>
     </div>
   );
 };
 
-export default TopUp;
+export default Send;

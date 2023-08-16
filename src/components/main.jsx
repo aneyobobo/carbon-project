@@ -125,7 +125,12 @@ const Main = () => {
   const [wallet, setWallet] = useState("");
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
+  const [walletid, setWalletid] = useState("");
+  const [receivingaccount, setReceivingaccount] = useState("")
+
   const [topUp, setTopUp] = useState(false);
+  const [send, setSend] = useState(false);
+  const [withdraw, setWithdraw] = useState(false)
 
   function getEmail(e) {
     setEmail(e.target.value);
@@ -134,7 +139,13 @@ const Main = () => {
     setAmount(e.target.value);
   }
 
-  const apiCaller = async () => {
+  function getWalletid(e) {
+    setWalletid(e.target.value);
+  }
+
+  console.log(walletid, amount, email);
+
+  const apiCallerForTopup = async () => {
     const token = localStorage.getItem("token");
     try {
       const caller = await axios({
@@ -154,7 +165,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    apiCaller();
+    apiCallerForTopup();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -185,7 +196,7 @@ const Main = () => {
     <div>
       <div className=" px-[2rem]">
         <div className="flex sm:flex-col justify-between gap-5 align-middle">
-          <div className="w-[50%] sm:w-full my-[2rem] shadow-xl p-5 px-12">
+          <div className="w-[50%] sm:w-full my-[2rem] shadow-xl p-5 px-10">
             {topUp && (
               <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm ">
                 <div className="flex justify-center items-center ">
@@ -203,7 +214,7 @@ const Main = () => {
                       <IoMdClose size={24} color="gray" />
                     </div>
                     <div className="flex flex-col gap-5">
-                      <p className="text-4xl font-bold text-center">
+                      <p className="text-5xl font-bold text-center">
                         Top up your wallet
                       </p>
                       <p className="text-3xl font-normal text-center pb-4   ">
@@ -248,12 +259,146 @@ const Main = () => {
               </div>
             )}
 
+            {send && (
+              <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm">
+                <div className="flex justify-center  ">
+                  <form
+                    className="flex flex-col items-center border-2 relative bg-white top-[15rem] rounded-3xl px-10 py-10"
+                    onSubmit={handleSubmit}
+                  >
+                    <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full ">
+                      <MdOutlinePayment size={50} color="white" />
+                    </div>
+
+                    <div
+                      className="h-10 w-10 rounded-full absolute border-2 border-gray-400 flex items-center justify-center top-2 right-2 cursor-pointer"
+                      onClick={() => setSend(false)}
+                    >
+                      <IoMdClose size={24} color="gray" />
+                    </div>
+
+                    <div className="flex flex-col gap-5">
+                      <p className="text-5xl font-bold text-center pt-5">
+                        Send to a Carbon Wallet
+                      </p>
+                      <p className="text-3xl font-normal text-center pb-4   ">
+                        Send money to another Carbon account
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col w-full gap-3">
+                      <label className="text-xl font-medium " htmlFor="">
+                        Amount
+                      </label>
+                      <input
+                        className="py-3 px-3 ring-1 ring-black text-xl"
+                        type="text"
+                        value={amount}
+                        onChange={getAmount}
+                      />
+
+                      <label className="text-xl font-medium " htmlFor="">
+                        Wallet I.D
+                      </label>
+                      <input
+                        className="py-3 px-3 ring-1 ring-black text-xl"
+                        type="text"
+                        value={walletid}
+                        onChange={getWalletid}
+                      />
+                    </div>
+
+                    <div className="flex gap-10 font-bold pt-5">
+                      <Button
+                        text="Proceed"
+                        bgclr="bg-[#dbd9dd] border-2 border-[#2b007a] text-[#2b007a] text-2xl w-full sm:w-full py-[.8rem] px-[1rem] rounded-md"
+                        onSubmit={handleSubmit}
+                      />
+                      <Button
+                        text="Cancel"
+                        bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.5rem] px-[2rem] rounded-md"
+                      />
+                    </div>
+                    <div className="flex gap-2 pt-3 text-3xl">
+                      <p className="">Your withdrawal limit is</p>
+                      <p className=" text-red-600">N50,000</p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+
+            {withdraw && (
+              <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm">
+                <div className="flex justify-center  ">
+                  <form
+                    className="flex flex-col items-center border-2 relative bg-white top-[15rem] rounded-3xl px-10 py-10"
+                    onSubmit={handleSubmit}
+                  >
+                    <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full ">
+                      <MdOutlinePayment size={50} color="white" />
+                    </div>
+
+                    <div
+                      className="h-10 w-10 rounded-full absolute border-2 border-gray-400 flex items-center justify-center top-2 right-2 cursor-pointer"
+                      onClick={() => setWithdraw(false)}
+                    >
+                      <IoMdClose size={24} color="gray" />
+                    </div>
+
+                    <div className="flex flex-col gap-5">
+                      <p className="text-5xl font-bold text-center pt-5">
+                        Withdrawal from Wallet
+                      </p>
+                      <p className="text-3xl font-normal text-center pb-4   ">
+                        Withdraw from wallet into your bank account
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col w-full gap-3">
+                      <label className="text-xl font-medium " htmlFor="">
+                        Amount
+                      </label>
+                      <input
+                        className="py-3 px-3 ring-1 ring-black text-xl"
+                        type="text"
+                        value={amount}
+                        onChange={getAmount}
+                      />
+
+                      <label className="text-xl font-medium " htmlFor="">
+                        Receiving Account
+                      </label>
+                      <input
+                        className="py-3 px-3 ring-1 ring-black text-xl"
+                        type="text"
+                        value={receivingaccount}
+                        onChange={setReceivingaccount}
+                      />
+                    </div>
+
+                    <div className="flex gap-10 font-bold pt-5">
+                      <Button
+                        text="Proceed"
+                        bgclr="bg-[#dbd9dd] border-2 border-[#2b007a] text-[#2b007a] text-2xl w-full sm:w-full py-[.8rem] px-[1rem] rounded-md"
+                        onSubmit={handleSubmit}
+                      />
+                      <Button
+                        text="Cancel"
+                        bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.5rem] px-[2rem] rounded-md"
+                      />
+                    </div>
+                    <div className="flex gap-2 pt-3 text-3xl">
+                      <p className="">Your withdrawal limit is</p>
+                      <p className=" text-red-600">N50,000</p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+
             <div className="flex justify-center flex-col">
-              {/* <img src={walletCard} alt="walletCard" />  */}
-              <div
-                className="p-8 rounded-3xl"
-                style={{ backgroundColor: "#5832a8" }}
-              >
+              <div className="p-8 rounded-3xl bg-[#5832a8]">
                 <p className="text-center text-3xl text-white">
                   Wallet Balance (NGN)
                 </p>
@@ -271,14 +416,17 @@ const Main = () => {
                   <p className="text-white font-bold">Top Up</p>
                 </div>
 
-                <div className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col bg-[#5832a8] cursor-pointer">
+                <div
+                  className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col bg-[#5832a8] cursor-pointer"
+                  onClick={() => setSend(!send)}
+                >
                   <BsSendCheck size={26} color="white" />
                   <p className="text-white font-bold">Send</p>
                 </div>
 
                 <div
                   className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col bg-[#5832a8] cursor-pointer "
-                  // style={{ backgroundColor: "#5832a8" }}
+                  onClick={() => setWithdraw(!withdraw)}
                 >
                   <MdPayment size={26} color="white" />
                   <p className="text-white font-bold">Withdraw</p>

@@ -56,7 +56,7 @@ const Signup = () => {
 
       if (signupData.password.length < 6) {
         // throw new Error("password less than 6 character");
-        return "password less than 6"
+        return "password less than 6";
       }
 
       setLoading(true);
@@ -69,8 +69,6 @@ const Signup = () => {
       );
 
       // console.log(signupData);
-      
-
 
       setLoading(false);
       setDisabled(false);
@@ -186,7 +184,7 @@ const Signup = () => {
                         type={visible ? "text" : "password"}
                         placeholder="Password"
                         className=" pr-[5.5rem] pt-[1rem] pb-[.5rem]  ring-1 ring-black text-xl rounded-lg "
-                        value={signupData.password}
+                        value={signupData.password.trim()}
                         onChange={getPassword}
                       />
                       <div className="absolute right-1">
@@ -218,7 +216,7 @@ const Signup = () => {
                         type={visible ? "text" : "password"}
                         placeholder="Password"
                         className=" pr-[5.5rem] pt-[1rem] pb-[.5rem]  ring-1 ring-black text-xl rounded-lg "
-                        value={signupData.repeat_password}
+                        value={signupData.repeat_password.trim()}
                         onChange={getRepeatPassword}
                       />
 
@@ -239,27 +237,6 @@ const Signup = () => {
                           />
                         )}
                       </div>
-
-                      {/* {visible ? (
-                        <MdVisibilityOff
-                          size={16}
-                          className="absolute right-[1rem] cursor-pointer"
-                          onClick={() => {
-                            setVisible(!visible);
-                          }}
-                        />
-                      ) : (
-                        <div
-                          onClick={() => {
-                            setVisible(visible);
-                          }}
-                        >
-                          <MdVisibility
-                            size={16}
-                            className="absolute right-[1rem] cursor-pointer"
-                          />
-                        </div>
-                      )} */}
                     </div>
                   </div>
                 </div>
@@ -309,9 +286,13 @@ const Signup = () => {
 
             <div className="flex gap-2">
               <p className="text-[1rem] font-medium">
-                Already have an account?{" "}
+                Already have an account?
               </p>
-              <p className="text-[#2B007A] text-[1rem] font-medium">Log in</p>
+              <Link to="/login">
+                <p className="text-[#2B007A] text-[1rem] font-medium cursor-pointer">
+                  Log in
+                </p>
+              </Link>
             </div>
           </div>
         </div>
