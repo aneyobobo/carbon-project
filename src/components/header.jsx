@@ -1,6 +1,8 @@
 import React from "react";
 import chelsea from "../assets/chelsea.jpg";
 import { CiSearch } from 'react-icons/ci'
+import {FaUserEdit} from "react-icons/fa"
+import { Link } from "react-router-dom"; 
 
 const Header = () => {
   return (
@@ -14,18 +16,16 @@ const Header = () => {
             placeholder="search"
           />
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2 ">
+          <Link to="/profile">
+            <div className="flex flex-col items-center border-2  rounded-xl bg-[#2b007a] cursor-pointer">
+              <FaUserEdit size={20} color="white" />
+              <p className="text-md text-white ">Profile</p>
+            </div>
+          </Link>
           <div className="">
             <p className="">Zulfah</p>
             <p className="">wallet ID: 00000</p>
-          </div>
-          <div className="">
-            <img
-              src={chelsea}
-              alt=""
-              className="rounded-[50%] w-[4rem] h-[4rem]"
-              // value={}
-            />
           </div>
         </div>
       </div>

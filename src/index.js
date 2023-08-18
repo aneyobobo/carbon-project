@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-// import App from './App';
 import Dashboard from "./pages/dashboard";
 import Landing from "./pages/shared/landing/Landing";
 import Login from "./components/Login/Login";
@@ -19,7 +18,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fallback from "./components/fallback/Fallback";
 import Getprofile from "./components/Getprofile/Getprofile";
 import Transaction from "./components/Transactions/Transaction";
-import TopUp from "./components/topUp";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -40,10 +39,8 @@ root.render(
         <Route path='/airtime' element={<Airtimedash/> }/>
         <Route path='/cable' element={<Cable /> }/>
         <Route path='/transaction'element={<Transaction/>}/>
-
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/updateprofile' element={<Getprofile/>}/>
-        <Route path="/topup" element={<TopUp/>} />
         <Route path="*" element={<Fallback/>}/>
         
       </Routes>

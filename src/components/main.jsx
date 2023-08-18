@@ -126,11 +126,11 @@ const Main = () => {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
   const [walletid, setWalletid] = useState("");
-  const [receivingaccount, setReceivingaccount] = useState("")
+  const [receivingaccount, setReceivingaccount] = useState("");
 
   const [topUp, setTopUp] = useState(false);
   const [send, setSend] = useState(false);
-  const [withdraw, setWithdraw] = useState(false)
+  const [withdraw, setWithdraw] = useState(false);
 
   function getEmail(e) {
     setEmail(e.target.value);
@@ -143,7 +143,7 @@ const Main = () => {
     setWalletid(e.target.value);
   }
 
-  console.log(walletid, amount, email);
+  // console.log(walletid, amount, email);
 
   const apiCallerForTopup = async () => {
     const token = localStorage.getItem("token");
@@ -196,23 +196,18 @@ const Main = () => {
     <div>
       <div className=" px-[2rem]">
         <div className="flex sm:flex-col justify-between gap-5 align-middle">
-          <div className="w-[50%] sm:w-full my-[2rem] shadow-xl p-5 px-10">
+          <div className="w-[50%] sm:w-full my-[2rem] shadow-xl p-5 px-10 ">
             {topUp && (
-              <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm ">
+              <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm">
                 <div className="flex justify-center items-center ">
                   <form
                     className="flex flex-col items-center border-2 relative bg-white top-[15rem] rounded-3xl px-10 py-10"
                     onSubmit={handleSubmit}
                   >
-                    <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full">
+                    <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full ">
                       <MdOutlinePayment size={50} color="white" />
                     </div>
-                    <div
-                      className="h-10 w-10 rounded-full absolute border-2 border-gray-400 flex items-center justify-center top-2 right-2 cursor-pointer"
-                      onClick={() => setTopUp(false)}
-                    >
-                      <IoMdClose size={24} color="gray" />
-                    </div>
+
                     <div className="flex flex-col gap-5">
                       <p className="text-5xl font-bold text-center">
                         Top up your wallet
@@ -252,6 +247,7 @@ const Main = () => {
                       <Button
                         text="Cancel"
                         bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.5rem] px-[2rem] rounded-md"
+                        onClick={() => setTopUp(false)}
                       />
                     </div>
                   </form>
@@ -260,7 +256,9 @@ const Main = () => {
             )}
 
             {send && (
-              <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm">
+              <div
+                className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm"
+              >
                 <div className="flex justify-center  ">
                   <form
                     className="flex flex-col items-center border-2 relative bg-white top-[15rem] rounded-3xl px-10 py-10"
@@ -268,13 +266,6 @@ const Main = () => {
                   >
                     <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full ">
                       <MdOutlinePayment size={50} color="white" />
-                    </div>
-
-                    <div
-                      className="h-10 w-10 rounded-full absolute border-2 border-gray-400 flex items-center justify-center top-2 right-2 cursor-pointer"
-                      onClick={() => setSend(false)}
-                    >
-                      <IoMdClose size={24} color="gray" />
                     </div>
 
                     <div className="flex flex-col gap-5">
@@ -317,11 +308,8 @@ const Main = () => {
                       <Button
                         text="Cancel"
                         bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.5rem] px-[2rem] rounded-md"
+                        onClick={() => setSend(false)}
                       />
-                    </div>
-                    <div className="flex gap-2 pt-3 text-3xl">
-                      <p className="">Your withdrawal limit is</p>
-                      <p className=" text-red-600">N50,000</p>
                     </div>
                   </form>
                 </div>
@@ -329,7 +317,9 @@ const Main = () => {
             )}
 
             {withdraw && (
-              <div className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm">
+              <div
+                className="absolute modal z-50 top-0 left-0 w-[100%] h-[100%] backdrop-blur-sm"
+              >
                 <div className="flex justify-center  ">
                   <form
                     className="flex flex-col items-center border-2 relative bg-white top-[15rem] rounded-3xl px-10 py-10"
@@ -337,13 +327,6 @@ const Main = () => {
                   >
                     <div className="flex justify-center items-center bg-gray-500 h-[8rem] w-[8rem] rounded-full ">
                       <MdOutlinePayment size={50} color="white" />
-                    </div>
-
-                    <div
-                      className="h-10 w-10 rounded-full absolute border-2 border-gray-400 flex items-center justify-center top-2 right-2 cursor-pointer"
-                      onClick={() => setWithdraw(false)}
-                    >
-                      <IoMdClose size={24} color="gray" />
                     </div>
 
                     <div className="flex flex-col gap-5">
@@ -386,10 +369,11 @@ const Main = () => {
                       <Button
                         text="Cancel"
                         bgclr="bg-[#4300C2] text-white  text-2xl w-full sm:w-full py-[.5rem] px-[2rem] rounded-md"
+                        onClick={() => setWithdraw(false)}
                       />
                     </div>
                     <div className="flex gap-2 pt-3 text-3xl">
-                      <p className="">Your withdrawal limit is</p>
+                      <p className="">Your daily withdrawal limit is</p>
                       <p className=" text-red-600">N50,000</p>
                     </div>
                   </form>
@@ -407,13 +391,13 @@ const Main = () => {
                 </p>
               </div>
 
-              <div className="flex gap-32 mt-6 items-center justify-center">
+              <div className="flex lg:gap-[8rem] md:gap-10 sm:gap-[2.8rem] mt-6 items-center justify-center">
                 <div
-                  className="h-[60px] w-[60px] flex items-center justify-center rounded-full flex-col bg-[#5832a8] cursor-pointer"
+                  className="h-[60px] w-[60px] sm:h-[60px] sm:w-[60px]  flex items-center justify-center rounded-full  flex-col bg-[#5832a8] cursor-pointer"
                   onClick={() => setTopUp(!topUp)}
                 >
                   <MdOutlineAddCard size={26} color="white" />
-                  <p className="text-white font-bold">Top Up</p>
+                  <p className="text-white text-lg font-bold  ">Top Up</p>
                 </div>
 
                 <div
